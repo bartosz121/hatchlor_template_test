@@ -9,8 +9,6 @@ on:
 
 jobs:
   test:
-    if: github.event_name != 'release'
-
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -49,6 +47,7 @@ jobs:
     if: github.event_name == 'release'
     runs-on: ubuntu-latest
     environment: release
+    needs: test
     permissions:
       contents: write
       id-token: write
